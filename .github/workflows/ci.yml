@@ -14,6 +14,7 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       PRODUCTION_HOST: ${{ secrets.PRODUCTION_HOST }}
       PRODUCTION_HOST_USER: ${{ secrets.PRODUCTION_HOST_USER }}
+      PRODUCTION_HOST_PATH: ${{ secrets.PRODUCTION_HOST_PATH }}
     steps:
       - uses: actions/checkout@v4
 
@@ -31,5 +32,5 @@ jobs:
       
       - name: Pull latest code to server
         run: |
-          echo "${{ secrets.PRODUCTION_HOST_PATH }}"
+          echo "$PRODUCTION_HOST_PATH"
           ssh -o StrictHostKeyChecking=no $PRODUCTION_HOST_USER@$PRODUCTION_HOST "cd $PRODUCTION_HOST_PATH && git pull origin main"
