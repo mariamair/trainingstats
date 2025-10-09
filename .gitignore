@@ -219,3 +219,6 @@ $RECYCLE.BIN/
 
 # VS Code Counter
 .VSCodeCounter
+
+# Local test reports
+test/reports/*
