@@ -30,4 +30,5 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
       
       - name: Pull latest code to server
-        run: ssh -o StrictHostKeyChecking=no $PRODUCTION_HOST_USER@$PRODUCTION_HOST "cd $PRODUCTION_HOST_PATH && git pull origin main"
+        run: echo "${{ secrets.PRODUCTION_HOST_PATH }}"
+          ssh -o StrictHostKeyChecking=no $PRODUCTION_HOST_USER@$PRODUCTION_HOST "cd $PRODUCTION_HOST_PATH && git pull origin main"
