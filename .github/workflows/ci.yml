@@ -13,8 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: npm install
-      - run: npx eslint ./src --output-file ./test/lintResult.json
-      - run: node ./test/index.js
+      - run: npx eslint ./src
   
   deploy:
     name: Deploy to Production
