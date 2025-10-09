@@ -21,7 +21,8 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "test": "node ./test/app.js"
+    "lint": "npx eslint ./src --format json --output-file ./test/reports/lintResult.json",
+    "createTestReport": "node ./test/index.js"
   },
   "dependencies": {
     "express": "^5.1.0"
