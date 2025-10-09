@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * The starting point of the application.
  * 
@@ -11,7 +12,6 @@ import { fileURLToPath } from 'node:url'
 const app = express()
 
 const directoryFullName = dirname(fileURLToPath(import.meta.url))
-console.log(directoryFullName)
 
 app.get('/', (req, res) => {
   res.sendFile(join(directoryFullName, '..', 'index.html'))
@@ -24,6 +24,6 @@ app.use('/public', (req, res) => {
 const port = 3000
 
 const server = app.listen(port, () => {
-  console.log('Server running at port: ' + port)
+  console.log('Server running at port: ' + server.address().port)
   console.log('Press Ctrl + C to terminate application')
 })

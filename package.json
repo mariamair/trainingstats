@@ -21,7 +21,8 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "lint": "npx eslint ./src --format json --output-file ./test/reports/lintResult.json",
+    "dev": "nodemon --inspect ./src/server.js",
+    "lint": "npx eslint ./src",
     "createTestReport": "node ./test/index.js"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@eslint/js": "^9.37.0",
     "eslint": "^9.37.0",
-    "jest": "^30.2.0"
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.10"
   }
 }
