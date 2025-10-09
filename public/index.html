@@ -4,12 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Training stats</title>
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <script type="module" src="./js/index.js"></script>
 </head>
 <body>
   <h1>Add your training statistics</h1>
-  <form>
+  <form id="trainingInformation">
+    <label for="date">Date</label>
+    <input type="date" id="date">
     <label for="type">Type of training</label>
     <input type="text" id="type">
+    <label for="minutes">Time (in minutes)</label>
+    <input type="number" id="minutes">
+    <button type="submit" id="submitTrainingInformation">Submit</button>
   </form>
 </body>
 </html>
