@@ -11,8 +11,13 @@ import { fileURLToPath } from 'node:url'
 const app = express()
 
 const directoryFullName = dirname(fileURLToPath(import.meta.url))
+console.log(directoryFullName)
 
 app.get('/', (req, res) => {
+  res.sendFile(join(directoryFullName, '..', 'index.html'))
+})
+
+app.use('/public', (req, res) => {
   res.sendFile(join(directoryFullName, '..', 'public', 'index.html'))
 })
 
