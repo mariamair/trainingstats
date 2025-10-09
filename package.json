@@ -1,0 +1,34 @@
+{
+  "name": "trainingstatistics",
+  "version": "0.0.1",
+  "description": "An application that keeps track of your training statistics",
+  "keywords": [
+    "training",
+    "statistics",
+    "histogram"
+  ],
+  "homepage": "https://github.com/mariamair/trainingstats#readme",
+  "bugs": {
+    "url": "https://github.com/mariamair/trainingstats/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariamair/trainingstats.git"
+  },
+  "license": "MIT",
+  "author": "Maria Mair <mm225mz@student.lnu.se>",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "test": "node ./test/app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "jest": "^30.2.0"
+  }
+}
