@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      PRODUCTION_HOST: ${{ secrets.PRODUCTION_HOST }}
+      PRODUCTION_HOST_USER: ${{ secrets.PRODUCTION_HOST_USER }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y openssh-client   
+          eval "$(ssh-agent -s)"
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H $PRODUCTION_HOST >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+      
+      - name: Pull latest code to server
+        run: ssh -o StrictHostKeyChecking=no $PRODUCTION_HOST_USER@$PRODUCTION_HOST "cd $PRODUCTION_HOST_PATH && git pull origin main"
