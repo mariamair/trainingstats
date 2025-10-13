@@ -1,0 +1,17 @@
+# Docker Compose file for development settings. Extends the base docker-compose.yaml file.
+# Sets volumes for live code updates, and environment variables.
+services:
+  mongodb:
+
+  trainingstats:
+    build:
+      dockerfile: Dockerfile.development
+    environment:
+      - NODE_ENV=development
+      - DB_CONNECTION_STRING=${DB_CONNECTION_STRING:-mongodb://mongodb:27017/myphysiotrainer}
+      
+    # Mount the source to '/usr/src/app/src' in the container to allow for live code updates.
+    # Mount the 'node_modules' directory in the container to avoid conflicts with the host.
+    volumes:
+      - ./:/usr/src/app/
+      - /usr/src/app/node_modules

@@ -16,7 +16,7 @@ export default defineConfig([
       'max-depth': ['warn', { 'max': 3 }],
       'max-len': ['warn', 
         { 
-          'code': 80,
+          'code': 120,
           'ignoreComments': true,
           'ignoreUrls': true 
         }],

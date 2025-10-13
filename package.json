@@ -22,11 +22,14 @@
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon --inspect ./src/server.js",
+    "docker:dev": "docker compose -p trainingstats-dev -f docker-compose.yml -f docker-compose.development.yml up -d --build",
+    "docker:prod": "docker compose -p trainingstats -f docker-compose.production.yml up -d --build",
     "lint": "npx eslint ./src",
-    "createTestReport": "node ./test/index.js"
+    "test": "npx --node-options=--experimental-vm-modules jest --coverage"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "group-into-intervals": "^1.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",

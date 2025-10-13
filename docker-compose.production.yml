@@ -1,0 +1,32 @@
+# Docker Compose file for production settings. Extends the base docker-compose.yaml file.
+
+services:
+  mongodb:
+    image: mongo:8.0.8
+    container_name: mongodb-trainingstats
+    volumes:
+      - ./.volumes/mongodb:/data/db
+
+  trainingstats:
+    image: ghcr.io/mariamair/trainingstats:latest
+    container_name: app-trainingstats
+    depends_on:
+      - mongodb
+    restart: on-failure
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=production
+      
+      - BASE_URL=${BASE_URL:-/}
+      - API_URL=${API_URL:-https://trainingstats.mariamair.se/api/v1}
+
+      - DB_CONNECTION_STRING=${DB_CONNECTION_STRING:-mongodb://mongodb:27017/trainingstats}
+
+      - SESSION_NAME=${SESSION_NAME:-trainingstats}
+      - SESSION_SECRET=${SESSION_SECRET}
+
+      - LOG_LEVEL=${LOG_LEVEL:-warning}
+      - LOGGER_COMBINED_LOG_FILE=${LOGGER_COMBINED_LOG_FILE:-/var/log/trainingstats/combined.log}
+      - LOGGER_ERROR_LOG_FILE=${LOGGER_ERROR_LOG_FILE:-/var/log/trainingstats/error.log}
+      - LOGGER_UNCAUGHT_EXCEPTION_LOG_FILE=${LOGGER_UNCAUGHT_EXCEPTION_LOG_FILE:-/var/log/trainingstats/uncaught-exception.log}

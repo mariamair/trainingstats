@@ -1,0 +1,20 @@
+services:
+  mongodb:
+    image: mongo:8.0.8
+    container_name: mongodb-trainingstats
+    volumes:
+      - ./.volumes/mongodb:/data/db
+    
+  trainingstats:
+    container_name: app-trainingstats
+    build:
+      context: .
+      tags:
+        - trainingstats:1.0.0
+    depends_on:
+      - mongodb
+    restart: on-failure
+    ports:
+      - "5001:5001"
+    environment:
+      - BASE_URL=${BASE_URL:-/}

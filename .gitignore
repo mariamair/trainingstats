@@ -222,3 +222,6 @@ $RECYCLE.BIN/
 
 # Local test reports
 test/reports/*
+
+# .volumes
+.volumes
