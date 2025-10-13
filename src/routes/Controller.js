@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * Class that handles training information
  * 
@@ -9,14 +10,15 @@ import { TrainingInstance } from '../model/TrainingInstance.js'
 
 export class Controller {
 
+  // eslint-disable-next-line no-unused-vars
   saveInformation(req, res, next) {
     try {
-      const trainingInstance = new TrainingInstance(
-        req.body.username,
-        req.body.date,
-        req.body.type,
-        req.body.minutes
-      )
+      const trainingInstance = new TrainingInstance({
+        username: req.body.username,
+        date: req.body.date,
+        type: req.body.type,
+        minutes: req.body.minutes
+      })
 
       const trainings = new Training()
       const training = trainingInstance.getTrainingInstance()

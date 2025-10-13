@@ -7,12 +7,12 @@
 export class TrainingInstance {
   #trainingInstance = {}
 
-  constructor (username, date, trainingType, minutes, intensity) {
-    this.#trainingInstance.username = username
-    this.#trainingInstance.date = date
-    this.#trainingInstance.trainingType = trainingType
-    this.#setMinutes(minutes)
-    this.#setIntensity(intensity)
+  constructor (trainingInstance) {
+    this.#trainingInstance.username = trainingInstance.username
+    this.#trainingInstance.date = trainingInstance.date
+    this.#trainingInstance.trainingType = trainingInstance.trainingType
+    this.#setMinutes(trainingInstance.minutes)
+    this.#setIntensity(trainingInstance.intensity)
   }
 
   #setMinutes(minutes) {
