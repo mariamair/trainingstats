@@ -31,9 +31,7 @@ app.use('/public', express.static(join(directoryFullName, '..', 'public')))
 
 app.use('/', router)
 
-const port = 3000
-
-const server = app.listen(port, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log('Server running at port: ' + server.address().port)
   console.log('Press Ctrl + C to terminate application')
 })
