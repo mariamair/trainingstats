@@ -5,7 +5,7 @@
  */
 
 import * as GroupIntoIntervals from 'group-into-intervals'
-import { Training } from './Training.js'
+import { Training } from './TrainingCollection.js'
 
 export class Statistics {
   #colorScheme
