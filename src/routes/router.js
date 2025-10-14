@@ -5,13 +5,13 @@
  */
 
 import express from 'express'
-import { Controller } from '../controller/Controller.js'
+import { TrainingController } from '../controller/TrainingController.js'
 
 export const router = express.Router()
 
-const controller = new Controller()
+const trainingController = new TrainingController()
 
 // Map HTTP verbs and route paths to controller action methods.
-router.get('/training', controller.findAll)
+router.get('/training', trainingController.findAll)
 
-router.post('/training', controller.create)
+router.post('/training', trainingController.create)

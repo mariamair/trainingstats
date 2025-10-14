@@ -9,7 +9,7 @@ import http from 'node:http'
 import { TrainingCollection } from '../model/TrainingCollection.js'
 import { TrainingInstance } from '../model/TrainingInstance.js'
 
-export class Controller {
+export class TrainingController {
   #trainingCollection = new TrainingCollection()
 
   create(req, res, next) {
