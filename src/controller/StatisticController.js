@@ -1,11 +1,9 @@
-/* eslint-disable no-undef */
 /**
  * Class that handles training information
  * 
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
-import http from 'node:http'
 import { Statistics } from '../model/Statistics.js'
 
 export class StatisticController {
@@ -48,13 +46,12 @@ export class StatisticController {
   }]
   #statistics = new Statistics(this.#initialCollection)
 
-  getAll(req, res, next) {
+  getNumberOfOccasions(req, res, next) {
     try {
       const result = this.#statistics.getNumberOfOccasions(this.#userName)
       res.json(result)
     } catch (error) {
-      // next(error)
-      console.log(error)
+      next(error)
     }
   }
 
@@ -63,8 +60,7 @@ export class StatisticController {
       const result = this.#statistics.getHistogram(this.#userName)
       res.json(result)
     } catch (error) {
-      // next(error)
-      console.log(error)
+      next(error)
     }
   }
 
@@ -73,8 +69,7 @@ export class StatisticController {
       const result = this.#statistics.getTotalTimeInMinutes(this.#userName)
       res.json(result)
     } catch (error) {
-      // next(error)
-      console.log(error)
+      next(error)
     }
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /**
  * Class that handles training information
  * 
@@ -21,8 +20,7 @@ export class TrainingController {
       this.#saveTrainingInformation(training)
       res.json('Saved')
     } catch (error) {
-      // next(error)
-      console.log(error)
+      next(error)
     }
   }
 
