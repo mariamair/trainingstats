@@ -6,12 +6,16 @@
 
 import express from 'express'
 import { TrainingController } from '../controller/TrainingController.js'
+import { StatisticController } from '../controller/StatisticController.js'
 
 export const router = express.Router()
 
 const trainingController = new TrainingController()
+const statisticController = new StatisticController()
 
 // Map HTTP verbs and route paths to controller action methods.
-router.get('/training', trainingController.findAll)
+router.post('/training', (req, res, next) => trainingController.create(req, res, next))
 
-router.post('/training', trainingController.create)
+router.get('/statistics/all', (req, res, next) => statisticController.getAll(req, res, next))
+router.get('/statistics/histogram', (req, res, next) => statisticController.getHistogram(req, res, next))
+router.get('/statistics/totalTime', (req, res, next) => statisticController.getTotalTime(req, res, next))
