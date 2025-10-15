@@ -12,45 +12,13 @@ export class Statistics {
   #colorSchemeId = 1
   #userName = 'testUser'
   #trainingCollection = new TrainingCollection()
-  #initialCollection = [{
-    username: this.#userName,
-    date: '2025-10-01',
-    type: 'Unit-Test: Cycling',
-    minutes: '60'
-  }, {
-    username: this.#userName,
-    date: '2025-10-01',
-    type: 'Unit-Test: Cycling',
-    minutes: '120'
-  }, {
-    username: this.#userName,
-    date: '2025-10-03',
-    type: 'Unit-Test: Riding',
-    minutes: '60'
-  }, {
-    username: this.#userName,
-    date: '2025-10-02',
-    type: 'Unit-Test: Wrestling',
-    minutes: '70'
-  }, {
-    username: this.#userName,
-    date: '2025-10-02',
-    type: 'Unit-Test: Cycling',
-    minutes: '30'
-  }, {
-    username: this.#userName,
-    date: '2025-10-02',
-    type: 'Unit-Test: Wrestling',
-    minutes: '30'
-  }, {
-    username: this.#userName,
-    date: '2025-10-03',
-    type: 'Unit-Test: Wrestling',
-    minutes: '70'
-  }]
 
-  initializeTrainingCollection() {
-    for (const training of this.#initialCollection) {
+  constructor(initialCollection) {
+    this.initializeTrainingCollection(initialCollection)
+  }
+
+  initializeTrainingCollection(initialCollection) {
+    for (const training of initialCollection) {
       const trainingInstance = new TrainingInstance(training)
       this.#trainingCollection.addTrainingInstance(trainingInstance.getTrainingInstance())
     }

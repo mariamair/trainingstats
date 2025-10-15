@@ -9,12 +9,48 @@ import http from 'node:http'
 import { Statistics } from '../model/Statistics.js'
 
 export class StatisticController {
-  #statistics = new Statistics()
+  #userName = 'testUser'
+  #initialCollection = [{
+    username: this.#userName,
+    date: '2025-10-01',
+    type: 'Unit-Test: Cycling',
+    minutes: '60'
+  }, {
+    username: this.#userName,
+    date: '2025-10-01',
+    type: 'Unit-Test: Cycling',
+    minutes: '120'
+  }, {
+    username: this.#userName,
+    date: '2025-10-03',
+    type: 'Unit-Test: Riding',
+    minutes: '60'
+  }, {
+    username: this.#userName,
+    date: '2025-10-02',
+    type: 'Unit-Test: Wrestling',
+    minutes: '70'
+  }, {
+    username: this.#userName,
+    date: '2025-10-02',
+    type: 'Unit-Test: Cycling',
+    minutes: '30'
+  }, {
+    username: this.#userName,
+    date: '2025-10-02',
+    type: 'Unit-Test: Wrestling',
+    minutes: '30'
+  }, {
+    username: this.#userName,
+    date: '2025-10-03',
+    type: 'Unit-Test: Wrestling',
+    minutes: '70'
+  }]
+  #statistics = new Statistics(this.#initialCollection)
 
   getAll(req, res, next) {
     try {
-      this.#statistics.initializeTrainingCollection()
-      const result = this.#statistics.getAllInstancesForUser()
+      const result = this.#statistics.getNumberOfOccasions()
       res.json(result)
     } catch (error) {
       // next(error)
@@ -24,7 +60,6 @@ export class StatisticController {
 
   getHistogram(req, res, next) {
     try {
-      this.#statistics.initializeTrainingCollection()
       const result = this.#statistics.getHistogram()
       res.json(result)
     } catch (error) {
@@ -35,7 +70,6 @@ export class StatisticController {
 
   getTotalTime(req, res, next) {
     try {
-      this.#statistics.initializeTrainingCollection()
       const result = this.#statistics.getTotalTimeInMinutes()
       res.json(result)
     } catch (error) {
