@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile.development
     environment:
       - NODE_ENV=development
-      - DB_CONNECTION_STRING=${DB_CONNECTION_STRING:-mongodb://mongodb:27017/myphysiotrainer}
+      - DB_CONNECTION_STRING=${DB_CONNECTION_STRING:-mongodb://mongodb:27017/trainingstats}
       
     # Mount the source to '/usr/src/app/src' in the container to allow for live code updates.
     # Mount the 'node_modules' directory in the container to avoid conflicts with the host.
