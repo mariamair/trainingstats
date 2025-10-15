@@ -24,7 +24,11 @@ export class Statistics {
   }
 
   getAllInstancesForUser(username) {
-    return this.#trainingCollection.getTrainingInstancesByUser(username)
+    const instances = this.#trainingCollection.getTrainingInstancesByUser(username)
+    if (instances === undefined || instances.length === 0) {
+      throw new Error('No training information available')
+    }
+    return instances
   }
 
   getTotalTimeInMinutes(username) {
