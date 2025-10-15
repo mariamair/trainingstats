@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: npm install
-      - run: echo "npx --node-options=--experimental-vm-modules jest --coverage"
+      - run: npx --node-options=--experimental-vm-modules jest
 
   deploy:
     name: Deploy to Production
