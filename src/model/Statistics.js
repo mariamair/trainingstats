@@ -37,7 +37,7 @@ export class Statistics {
   }
 
   getHistogram(username) {
-    const minutes = this.#trainingCollection.getMinutesPerInstance(username)
+    const minutes = this.getMinutesPerInstance(username)
     const intervals = GroupIntoIntervals.getAscendingIntervalsWithColors(minutes, this.#colorSchemeId)
     return intervals
   }

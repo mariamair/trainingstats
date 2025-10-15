@@ -50,7 +50,7 @@ export class StatisticController {
 
   getAll(req, res, next) {
     try {
-      const result = this.#statistics.getNumberOfOccasions()
+      const result = this.#statistics.getNumberOfOccasions(this.#userName)
       res.json(result)
     } catch (error) {
       // next(error)
@@ -60,7 +60,7 @@ export class StatisticController {
 
   getHistogram(req, res, next) {
     try {
-      const result = this.#statistics.getHistogram()
+      const result = this.#statistics.getHistogram(this.#userName)
       res.json(result)
     } catch (error) {
       // next(error)
@@ -70,7 +70,7 @@ export class StatisticController {
 
   getTotalTime(req, res, next) {
     try {
-      const result = this.#statistics.getTotalTimeInMinutes()
+      const result = this.#statistics.getTotalTimeInMinutes(this.#userName)
       res.json(result)
     } catch (error) {
       // next(error)
