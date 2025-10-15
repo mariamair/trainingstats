@@ -31,6 +31,9 @@ async function getInformation (option) {
 }
 
 function displayStatistics(option, result) {
+  if (option === 'occasions') {
+    displayNumberOfOccasions(result)
+  }
   if (option === 'totalTime') {
     displayTotalTime(result)
   }
@@ -39,9 +42,14 @@ function displayStatistics(option, result) {
   }
 }
 
+function displayNumberOfOccasions(result) {
+  clearDisplay()
+  displayHeading('You have been training ' + result + ' times')
+}
+
 function displayTotalTime(result) {
   clearDisplay()
-  displayHeading('Your total training time: ' + result + ' minutes')
+  displayHeading('Your total training time is ' + result + ' minutes')
 }
 
 function clearDisplay() {
