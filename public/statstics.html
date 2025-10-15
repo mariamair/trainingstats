@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training statistics</title>
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <script type="module" src="./js/statistics.js"></script>
+  <template id="histogram">
+    <div id="interval-container">
+      <p class="interval-boundaries"></p>
+      <div class="interval-swatch"></div>
+      <p class="interval-datapoints"></p>
+    </div>
+  </template>
+</head>
+
+<body>
+  <ul class="nav">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./statstics.html">View statistics</a></li>
+  </ul>
+
+  <h1>View your training statistics</h1>
+
+  <div>
+    <form id="statistics">
+      <label for="statistics-option">Select what you want to see</label>
+      <select name="statistics-option" id="statistics-option">
+        <option value="all">All information</option>
+        <option value="totalTime">Total time in minutes</option>
+        <option value="histogram">Histogram</option>
+      </select>
+      <button type="submit" id="submitStatisticsSelection">Display</button>
+    </form>
+  </div>
+  <div id="trainingStatistics">
+  </div>
+
+</body>
+
+</html>
