@@ -13,37 +13,37 @@ export class StatisticController {
   #initialCollection = [{
     username: this.#userName,
     date: '2025-10-01',
-    type: 'Unit-Test: Cycling',
+    trainingType: 'Unit-Test: Cycling',
     minutes: '60'
   }, {
     username: this.#userName,
     date: '2025-10-01',
-    type: 'Unit-Test: Cycling',
+    trainingType: 'Unit-Test: Cycling',
     minutes: '120'
   }, {
     username: this.#userName,
     date: '2025-10-03',
-    type: 'Unit-Test: Riding',
+    trainingType: 'Unit-Test: Riding',
     minutes: '60'
   }, {
     username: this.#userName,
     date: '2025-10-02',
-    type: 'Unit-Test: Wrestling',
+    trainingType: 'Unit-Test: Wrestling',
     minutes: '70'
   }, {
     username: this.#userName,
     date: '2025-10-02',
-    type: 'Unit-Test: Cycling',
+    trainingType: 'Unit-Test: Cycling',
     minutes: '30'
   }, {
     username: this.#userName,
     date: '2025-10-02',
-    type: 'Unit-Test: Wrestling',
+    trainingType: 'Unit-Test: Wrestling',
     minutes: '30'
   }, {
     username: this.#userName,
     date: '2025-10-03',
-    type: 'Unit-Test: Wrestling',
+    trainingType: 'Unit-Test: Wrestling',
     minutes: '70'
   }]
   #statistics = new Statistics(this.#initialCollection)

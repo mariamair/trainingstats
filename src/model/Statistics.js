@@ -51,6 +51,19 @@ export class Statistics {
     return minutes
   }
 
+  getMinutesPerTrainingType(username) {
+    const instances = this.getAllInstancesForUser(username)
+    const minutesPerType = {}
+    for (const instance of instances) {
+      if(!minutesPerType[instance.type]) {
+        instance.type = instance.minutes
+      } else {
+        instance.type += instance.minutes
+      }
+    }
+    return minutesPerType
+  }
+
   getNumberOfOccasions(username) {
     const instances = this.getAllInstancesForUser(username)
     return instances.length
@@ -79,7 +92,7 @@ export class Statistics {
     const instances = this.getAllInstancesForUser(username)
     const types = new Set()
     for (const instance of instances) {
-      types.add(instance.type)
+      types.add(instance.trainingType)
     }
     return Array.from(types)
   }
@@ -88,25 +101,12 @@ export class Statistics {
     const instances = this.getAllInstancesForUser(username)
     const typeFrequency = {}
     for (const instance of instances) {
-      if (!typeFrequency[instance.type]) {
-        typeFrequency[instance.type] = 1
+      if (!typeFrequency[instance.trainingType]) {
+        typeFrequency[instance.trainingType] = 1
       } else {
-        typeFrequency[instance.type]++
+        typeFrequency[instance.trainingType]++
       }
     }
     return typeFrequency
-  }
-
-  getMinutesPerTrainingType(username) {
-    const instances = this.getAllInstancesForUser(username)
-    const minutesPerType = {}
-    for (const instance of instances) {
-      if(!minutesPerType[instance.type]) {
-        instance.type = instance.minutes
-      } else {
-        instance.type += instance.minutes
-      }
-    }
-    return minutesPerType
   }
 }
