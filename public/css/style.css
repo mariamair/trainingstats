@@ -26,6 +26,11 @@ a:hover {
     text-decoration: underline;
 }
 
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
 #trainingInformation {
   display: grid;
   grid-template-columns: min-content min-content;
