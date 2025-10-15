@@ -10,7 +10,6 @@ import { TrainingInstance } from './TrainingInstance.js'
 
 export class Statistics {
   #colorSchemeId = 1
-  #userName = 'testUser'
   #trainingCollection = new TrainingCollection()
 
   constructor(initialCollection) {
@@ -24,17 +23,90 @@ export class Statistics {
     }
   }
 
-  getAllInstancesForUser() {
-    return this.#trainingCollection.getTrainingInstancesByUser(this.#userName)
+  getAllInstancesForUser(username) {
+    return this.#trainingCollection.getTrainingInstancesByUser(username)
   }
 
-  getHistogram() {
-    const minutes = this.#trainingCollection.getMinutesPerInstance(this.#userName)
+  getTotalTimeInMinutes(username) {
+    const instances = this.getAllInstancesForUser(username)
+    let totalTime = 0
+    for (const instance of instances) {
+      totalTime += instance.minutes
+    }
+    return totalTime
+  }
+
+  getHistogram(username) {
+    const minutes = this.#trainingCollection.getMinutesPerInstance(username)
     const intervals = GroupIntoIntervals.getAscendingIntervalsWithColors(minutes, this.#colorSchemeId)
     return intervals
   }
 
-  getTotalTimeInMinutes() {
-    return this.#trainingCollection.getTotalTimeInMinutes(this.#userName)
+  getMinutesPerInstance(username) {
+    const minutes = []
+    const instances = this.getAllInstancesForUser(username)
+    for (const instance of instances) {
+      minutes.push(instance.minutes)
+    }
+    return minutes
+  }
+
+  getNumberOfOccasions(username) {
+    const instances = this.getAllInstancesForUser(username)
+    return instances.length
+  }
+
+  getNumberOfDays(username) {
+    const days = this.getUniqueDays(username)
+    return days.length
+  }
+
+  getUniqueDays(username) {
+    const instances = this.getAllInstancesForUser(username)
+    const days = new Set()
+    for (const instance of instances) {
+      days.add(instance.date)
+    }
+    return Array.from(days)
+  }
+
+  getNumberOfTrainingTypes(username) {
+    const types = this.getUniqueTrainingTypes(username)
+    return types.length
+  }
+
+  getUniqueTrainingTypes(username) {
+    const instances = this.getAllInstancesForUser(username)
+    const types = new Set()
+    for (const instance of instances) {
+      types.add(instance.type)
+    }
+    return Array.from(types)
+  }
+
+  getFrequencyOfTrainingTypes(username) {
+    const instances = this.getAllInstancesForUser(username)
+    const typeFrequency = {}
+    for (const instance of instances) {
+      if (!typeFrequency[instance.type]) {
+        typeFrequency[instance.type] = 1
+      } else {
+        typeFrequency[instance.type]++
+      }
+    }
+    return typeFrequency
+  }
+
+  getMinutesPerTrainingType(username) {
+    const instances = this.getAllInstancesForUser(username)
+    const minutesPerType = {}
+    for (const instance of instances) {
+      if(!minutesPerType[instance.type]) {
+        instance.type = instance.minutes
+      } else {
+        instance.type += instance.minutes
+      }
+    }
+    return minutesPerType
   }
 }
