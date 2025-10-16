@@ -16,16 +16,15 @@ console.log(execSync('npx --node-options=--experimental-vm-modules jest --json -
 
 const directoryFullName = dirname(fileURLToPath(import.meta.url))
 const inputPath = join(directoryFullName, 'reports', 'report.json')
-const outputPathReport = join(directoryFullName, 'reports', 'report.md')
+const outputPathReport = join(directoryFullName, 'reports', 'unitTestReport.md')
 const outputPathSummary = join(directoryFullName, 'reports', 'summary.md')
 
 const report = await readTestReport()
-const markdownReport = createMarkdownReport(report)
-const summary = createSummary(report)
+let markdownReport = '# Test results\n'
+createSummary(report)
+createTestCaseReport(report)
 writeTestReportToMarkdown(outputPathReport, markdownReport)
-writeTestReportToMarkdown(outputPathSummary, summary)
 console.log(markdownReport)
-console.log(summary)
 
 async function readTestReport () {
   const result = await fs.readFile(inputPath, 'utf8')
@@ -39,12 +38,23 @@ async function readTestReport () {
   return data
 }
 
-function createMarkdownReport(report) {
+function createSummary(report) {
+  const time = new Date(report.startTime).toString()
+  const tableColumns = '\n\n|   | Failed | Passed | Total |\n|---|--------|--------|-------|\n'
+
+  markdownReport += '\n**Latest run:** ' + time.substring(0, 21)
+    markdownReport += '\n\n## Summary of test results\n'
+  markdownReport += tableColumns
+  markdownReport += '| Test suites | ' +
+    report.numFailedTestSuites + ' | ' + report.numPassedTestSuites + ' | ' + report.numTotalTestSuites + ' |\n'
+  markdownReport += '| Tests | ' +
+    report.numFailedTests + ' | ' + report.numPassedTests + ' | ' + report.numTotalTests + ' |\n'
+}
+
+function createTestCaseReport(report) {
   const time = new Date(report.startTime).toString()
   const tableColumns = '| Test | Status |\n|------|--------|\n'
 
-  let markdownReport = '# Test results\n'
-  markdownReport += '**Latest run:** ' + time.substring(0, 21)
   for (const suite of report.testResults) {
     markdownReport += '\n\n## ' + suite.assertionResults[0].ancestorTitles + '\n\n'
     markdownReport += tableColumns
@@ -53,23 +63,6 @@ function createMarkdownReport(report) {
       markdownReport += '| ' + test.title + ' | ' + status + ' |\n'
     }
   }
-
-  return markdownReport
-}
-
-function createSummary(report) {
-  const time = new Date(report.startTime).toString()
-  const tableColumns = '\n\n|   | Failed | Passed | Total |\n|---|--------|--------|-------|\n'
-
-  let summary = '# Summary of test results\n'
-  summary += '**Latest run:** ' + time.substring(0, 21)
-  summary += tableColumns
-  summary += '| Test suites | ' +
-    report.numFailedTestSuites + ' | ' + report.numPassedTestSuites + ' | ' + report.numTotalTestSuites + ' |\n'
-  summary += '| Tests | ' +
-    report.numFailedTests + ' | ' + report.numPassedTests + ' | ' + report.numTotalTests + ' |\n'
-
-  return summary
 }
 
 async function writeTestReportToMarkdown (outputPath, report) {

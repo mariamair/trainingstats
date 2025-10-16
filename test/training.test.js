@@ -55,7 +55,7 @@ const trainingInstancesFirstUser = [{
 
 const statistics = new Statistics(trainingInstances)
 
-describe('Get saved information for user', () => {
+describe('UT1: Get saved information for user', () => {
   test('all training information', () => {
     expect(statistics.getAllInstancesForUser(firstUser)).toStrictEqual(trainingInstancesFirstUser)
   })
