@@ -5,6 +5,8 @@
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
+import { ErrorHandler } from './ErrorHandler.js'
+
 const form = document.querySelector('#trainingInformation')
 
 setTodaysDate()
@@ -31,15 +33,17 @@ async function saveInformationAndReloadPage(event) {
   event.preventDefault()
   const values = readValues(event.target)
   const result = await saveInformation(values)
-  console.log('result: ' + result)
-  window.location.reload()
+  const p = document.createElement('p')
+  p.textContent = result
+  document.querySelector('#messageDisplay').appendChild(p)
+  form.reset()
 }
 
 function readValues (form) {
   const values = { 
     username: form.querySelector('#username').value,
     date: form.querySelector('#date').value,
-    type: form.querySelector('#type').value,
+    trainingType: form.querySelector('#trainingType').value,
     minutes: form.querySelector('#minutes').value
   }
   return values
@@ -55,13 +59,16 @@ async function saveInformation (values) {
       },
       body: JSON.stringify(values)
     })
+
+    const data = await res.json()
   
     if (!res.ok) {
-      throw new Error ('Could not save information')
+      throw new Error(data.message)
     } 
-    return await res.json()
+    return data
   } catch (error) {
-    console.log(error)
+    const errorHandler = new ErrorHandler()
+    errorHandler.displayErrorMessage(error.message)
   }
 }
 
