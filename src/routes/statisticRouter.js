@@ -12,6 +12,8 @@ export const router = express.Router()
 const statisticController = new StatisticController()
 
 // Map HTTP verbs and route paths to controller action methods.
-router.get('/statistics/occasions', (req, res, next) => statisticController.getNumberOfOccasions(req, res, next))
-router.get('/statistics/histogram', (req, res, next) => statisticController.getHistogram(req, res, next))
-router.get('/statistics/totalTime', (req, res, next) => statisticController.getTotalTime(req, res, next))
+router.get('/occasions', (req, res, next) => statisticController.getNumberOfOccasions(req, res, next))
+router.get('/numberOfDays', (req, res, next) => statisticController.getNumberOfDays(req, res, next))
+router.get('/trainingTypes', (req, res, next) => statisticController.getTrainingTypes(req, res, next))
+router.get('/totalTime', (req, res, next) => statisticController.getTotalTime(req, res, next))
+router.get('/histogram', (req, res, next) => statisticController.getHistogram(req, res, next))

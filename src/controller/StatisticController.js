@@ -11,37 +11,37 @@ export class StatisticController {
   #initialCollection = [{
     username: this.#userName,
     date: '2025-10-01',
-    trainingType: 'Unit-Test: Cycling',
+    trainingType: 'Cycling',
     minutes: '60'
   }, {
     username: this.#userName,
     date: '2025-10-01',
-    trainingType: 'Unit-Test: Cycling',
+    trainingType: 'Cycling',
     minutes: '120'
   }, {
     username: this.#userName,
     date: '2025-10-03',
-    trainingType: 'Unit-Test: Riding',
+    trainingType: 'Riding',
     minutes: '60'
   }, {
     username: this.#userName,
     date: '2025-10-02',
-    trainingType: 'Unit-Test: Wrestling',
+    trainingType: 'Wrestling',
     minutes: '70'
   }, {
     username: this.#userName,
     date: '2025-10-02',
-    trainingType: 'Unit-Test: Cycling',
+    trainingType: 'Cycling',
     minutes: '30'
   }, {
     username: this.#userName,
     date: '2025-10-02',
-    trainingType: 'Unit-Test: Wrestling',
+    trainingType: 'Wrestling',
     minutes: '30'
   }, {
     username: this.#userName,
     date: '2025-10-03',
-    trainingType: 'Unit-Test: Wrestling',
+    trainingType: 'Wrestling',
     minutes: '70'
   }]
   #statistics = new Statistics(this.#initialCollection)
@@ -55,10 +55,19 @@ export class StatisticController {
     }
   }
 
-  getHistogram(req, res, next) {
+  getNumberOfDays(req, res, next) {
     try {
-      const result = this.#statistics.getHistogram(this.#userName)
+      const result = this.#statistics.getNumberOfDays(this.#userName)
       res.json(result)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  getTrainingTypes(req, res, next) {
+    try {
+      const result = this.#statistics.getUniqueTrainingTypes(this.#userName)
+      res.json(JSON.stringify(result))
     } catch (error) {
       next(error)
     }
@@ -67,6 +76,15 @@ export class StatisticController {
   getTotalTime(req, res, next) {
     try {
       const result = this.#statistics.getTotalTimeInMinutes(this.#userName)
+      res.json(result)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  getHistogram(req, res, next) {
+    try {
+      const result = this.#statistics.getHistogram(this.#userName)
       res.json(result)
     } catch (error) {
       next(error)

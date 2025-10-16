@@ -1,8 +1,11 @@
+/* eslint-disable no-undef */
 /**
  * The script file of the statistics page.
  *
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
+
+import { ErrorHandler } from './ErrorHandler.js'
 
 const form = document.querySelector('#statistics')
 const container = document.querySelector('#trainingStatistics')
@@ -18,21 +21,28 @@ async function getInformation (option) {
   try {
     const res = await window.fetch(`/statistics/${option}`)
   
-    if (!res.ok) {
-      throw new Error ('Could not fetch information')
-    } 
-
     const data = await res.json()
+
+    if (!res.ok) {
+      throw new Error(data.message)
+    } 
 
     return JSON.parse(data)
   } catch (error) {
-    console.log(error)
+    const errorHandler = new ErrorHandler()
+    errorHandler.displayErrorMessage(error.message)
   }
 }
 
 function displayStatistics(option, result) {
   if (option === 'occasions') {
     displayNumberOfOccasions(result)
+  }
+  if (option === 'numberOfDays') {
+    displayNumberOfDays(result)
+  }
+  if (option === 'trainingTypes') {
+    displayTrainingTypes(result)
   }
   if (option === 'totalTime') {
     displayTotalTime(result)
@@ -45,6 +55,17 @@ function displayStatistics(option, result) {
 function displayNumberOfOccasions(result) {
   clearDisplay()
   displayHeading('You have been training ' + result + ' times')
+}
+
+function displayNumberOfDays(result) {
+  clearDisplay()
+  displayHeading('You have been training ' + result + ' days')
+}
+
+function displayTrainingTypes(result) {
+  clearDisplay()
+  displayHeading('Training types')
+  displayList(result)
 }
 
 function displayTotalTime(result) {
@@ -62,6 +83,14 @@ function displayHeading(text) {
   const heading = document.createElement('h3')
   heading.textContent = text
   container.appendChild(heading)
+}
+
+function displayList(result) {
+  for (const item of result) {
+    const p = document.createElement('p')
+    p.textContent = item
+    container.appendChild(p)
+  }
 }
 
 function createHistogram (intervals) {
@@ -99,4 +128,3 @@ function displayDataPoints(clone, interval) {
 function getNumberOfDataPoints (dataPoints) {
   return dataPoints.length
 }
-
