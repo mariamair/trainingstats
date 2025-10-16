@@ -14,9 +14,7 @@ export class TrainingController {
   create(req, res, next) {
     try {
       this.#validateUserInput(req.body)
-
       const training = this.#createTrainingObject(req.body)
-
       this.#saveTrainingInformation(training)
       res.json('Saved')
     } catch (error) {
@@ -25,20 +23,38 @@ export class TrainingController {
   }
 
   #validateUserInput(requestObject) {
-    if (!['username', 'date', 'type', 'minutes'].every(property => property in requestObject)) {
-      const httpStatusCode = 400
-      const error = new Error(http.STATUS_CODES[httpStatusCode])
-      error.status = httpStatusCode
-      error.message = http.STATUS_CODES[httpStatusCode]
-      throw error
+    for (const [key, value] of Object.entries(requestObject)) {
+      if (this.#isMissing(key) || this.#isEmpty(value)) {
+        this.#throwError()
+      }
     }
+  }
+
+  #throwError() {
+    const httpStatusCode = 400
+    const error = new Error(http.STATUS_CODES[httpStatusCode])
+    error.status = httpStatusCode
+    error.statusMessage = http.STATUS_CODES[httpStatusCode]
+    error.message = 'Invalid input'
+    throw error
+  }
+
+  #isMissing(property) {
+    return property ? false : true
+  }
+
+  #isEmpty(value) {
+    if (value === '') {
+      return true
+    }
+    return false
   }
 
   #createTrainingObject(requestObject) {
     return {
       username: requestObject.username,
       date: requestObject.date,
-      type: requestObject.type,
+      trainingType: requestObject.trainingType,
       minutes: requestObject.minutes,
       intensity: (requestObject.intensity === undefined) ? undefined : requestObject.intensity
     }
