@@ -43,10 +43,24 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # Important: avoids auth issues with later push
       - uses: actions/setup-node@v4
       - run: npm install
       - run: npx --node-options=--experimental-vm-modules jest --json --outputFile=./test/reports/report.json
-      - run: node test/createTestreport.js
+
+      - name: Generate Test report
+        run: node test/createTestreport.js
+
+      - name: Commit and push generated report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add test/reports/
+          git commit -m "Add updated test report [skip ci]" || echo "No changes to commit"
+          git push 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     name: Deploy to Production
