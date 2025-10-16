@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - run: npm install
-      - run: npx --node-options=--experimental-vm-modules jest
+      - run: npx --node-options=--experimental-vm-modules jest --json --outputFile=./test/reports/report.json
       - run: node test/createTestreport.js
 
   deploy:
