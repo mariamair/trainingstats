@@ -46,6 +46,7 @@ jobs:
       - uses: actions/setup-node@v4
       - run: npm install
       - run: npx --node-options=--experimental-vm-modules jest
+      - run: node test/createTestreport.js
 
   deploy:
     name: Deploy to Production

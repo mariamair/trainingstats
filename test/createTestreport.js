@@ -11,9 +11,6 @@ import { fileURLToPath } from 'node:url'
 import fs from 'node:fs/promises'
 import console from 'node:console'
 
-// Run the tests, log the output from jest in the console and save the tests to report.json
-console.log(execSync('npx --node-options=--experimental-vm-modules jest --json --outputFile=./test/reports/report.json || exit 0'))
-
 const directoryFullName = dirname(fileURLToPath(import.meta.url))
 const inputPath = join(directoryFullName, 'reports', 'report.json')
 const outputPathReport = join(directoryFullName, 'reports', 'unitTestReport.md')
