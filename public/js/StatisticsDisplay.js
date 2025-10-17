@@ -22,7 +22,7 @@ export class StatisticsDisplay {
       this.#displayTotalTime(data)
     }
     if (option === 'histogram') {
-      this.#createHistogram(data)
+      this.#displayHistogram(data)
     }
   }
 
@@ -67,23 +67,23 @@ export class StatisticsDisplay {
     }
   }
 
-  #createHistogram (intervals) {
+  #displayHistogram (intervals) {
     this.#clearDisplay()
-    this.#displayHeading('Minutes per training instance')
+    this.#displayHeading('Minutes of training time (frequency distribution)')
 
     let histogramClone
     const histogramTemplate = document.querySelector('#histogram')
 
     for (const interval of intervals) {
       histogramClone = histogramTemplate.content.cloneNode(true)
-      this.#displayHistogram(histogramClone, interval)
       this.#displayBoundaries(histogramClone, interval)
+      this.#displayFrequency(histogramClone, interval)
       this.#displayDataPoints(histogramClone, interval)
       this.#container.appendChild(histogramClone)
     }
   }
 
-  #displayHistogram(clone, interval) {
+  #displayFrequency(clone, interval) {
     const swatch = clone.querySelector('.interval-swatch')
     swatch.style.backgroundColor = interval.color.hexValue
     swatch.style.width = 50 * this.#getNumberOfDataPoints(interval.data) + 'px'
