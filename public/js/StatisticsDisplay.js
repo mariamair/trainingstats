@@ -5,6 +5,8 @@
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
+import { HistogramDisplay } from './HistogramDisplay.js'
+
 export class StatisticsDisplay {
   #container = document.querySelector('#trainingStatistics')
 
@@ -22,7 +24,8 @@ export class StatisticsDisplay {
       this.#displayTotalTime(data)
     }
     if (option === 'histogram') {
-      this.#displayHistogram(data)
+      const histogramDisplay = new HistogramDisplay()
+      histogramDisplay.displayHistogram(data)
     }
   }
 
@@ -65,41 +68,5 @@ export class StatisticsDisplay {
       p.textContent = item
       this.#container.appendChild(p)
     }
-  }
-
-  #displayHistogram (intervals) {
-    this.#clearDisplay()
-    this.#displayHeading('Minutes of training time (frequency distribution)')
-
-    let histogramClone
-    const histogramTemplate = document.querySelector('#histogram')
-
-    for (const interval of intervals) {
-      histogramClone = histogramTemplate.content.cloneNode(true)
-      this.#displayBoundaries(histogramClone, interval)
-      this.#displayFrequency(histogramClone, interval)
-      this.#displayDataPoints(histogramClone, interval)
-      this.#container.appendChild(histogramClone)
-    }
-  }
-
-  #displayFrequency(clone, interval) {
-    const swatch = clone.querySelector('.interval-swatch')
-    swatch.style.backgroundColor = interval.color.hexValue
-    swatch.style.width = 50 * this.#getNumberOfDataPoints(interval.data) + 'px'
-  }
-
-  #displayBoundaries (clone, interval) {
-    const boundaries = clone.querySelector('.interval-boundaries')
-    boundaries.textContent = interval.lowerBoundary + ' - ' + interval.upperBoundary
-  }
-
-  #displayDataPoints(clone, interval) {
-    const dataPoints = clone.querySelector('.interval-datapoints')
-    dataPoints.textContent = 'Number of instances: ' + interval.data.length
-  }
-
-  #getNumberOfDataPoints (dataPoints) {
-    return dataPoints.length
   }
 }
