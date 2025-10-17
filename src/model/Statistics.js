@@ -4,13 +4,14 @@
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
-import * as GroupIntoIntervals from 'group-into-intervals'
+import { GroupIntoIntervalsWrapper } from './GroupIntoIntervalsWrapper.js'
 import { TrainingCollection } from './TrainingCollection.js'
 import { TrainingInstance } from './TrainingInstance.js'
 
 export class Statistics {
   #colorSchemeId = 1
   #trainingCollection = new TrainingCollection()
+  #wrapper = new GroupIntoIntervalsWrapper()
 
   constructor(initialCollection) {
     this.initializeTrainingCollection(initialCollection)
@@ -42,7 +43,7 @@ export class Statistics {
 
   getHistogram(username) {
     const minutes = this.getMinutesPerInstance(username)
-    const intervals = GroupIntoIntervals.getAscendingIntervalsWithColors(minutes, this.#colorSchemeId)
+    const intervals = this.#wrapper.getAscendingIntervalsWithColors(minutes, this.#colorSchemeId)
     return intervals
   }
 
