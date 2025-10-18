@@ -1,7 +1,7 @@
 # Contributing
 Please be sure to read the contribution guidelines before making a change.
 
-## The appliction setup
+## The application setup
 _Trainingstats_ is a Node.js/Express application that runs in a container.
 - The backend is built with vanilla javascript.
 - The frontend is built with html, css and vanilla javascript.
