@@ -20,8 +20,6 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "start": "node ./src/server.js",
-    "dev": "nodemon --inspect ./src/server.js",
     "docker:dev": "docker compose -p trainingstats-dev -f docker-compose.yml -f docker-compose.development.yml up -d --build",
     "docker:prod": "docker compose -p trainingstats -f docker-compose.production.yml up -d --build",
     "lint": "npx eslint .",
