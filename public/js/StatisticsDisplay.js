@@ -41,7 +41,7 @@ export class StatisticsDisplay {
 
   #displayTrainingTypes(result) {
     this.#clearDisplay()
-    this.#displayHeading('Training types')
+    this.#displayHeading('Your training types')
     this.#displayList(result)
   }
 

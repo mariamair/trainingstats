@@ -7,21 +7,15 @@
 
 export class HistogramDisplay {
   #container = document.querySelector('#trainingStatistics')
+  #histogramTableTemplate = document.querySelector('#histogram-table')
+  #tableRowTemplate = document.querySelector('#interval-row')
 
   displayHistogram (intervals) {
     this.#clearDisplay()
-    this.#displayHeading('Minutes of training time (frequency distribution)')
+    this.#displayHeading('Frequency distribution of training time')
 
-    let histogramClone
-    const histogramTemplate = document.querySelector('#histogram')
-
-    for (const interval of intervals) {
-      histogramClone = histogramTemplate.content.cloneNode(true)
-      this.#displayBoundaries(histogramClone, interval)
-      this.#displayFrequency(histogramClone, interval)
-      this.#displayDataPoints(histogramClone, interval)
-      this.#container.appendChild(histogramClone)
-    }
+    this.#displayTableHeader()
+    this.#displayTableRows(intervals)
   }
 
   #clearDisplay() {
@@ -36,10 +30,24 @@ export class HistogramDisplay {
     this.#container.appendChild(heading)
   }
 
-  #displayFrequency(clone, interval) {
-    const swatch = clone.querySelector('.interval-swatch')
-    swatch.style.backgroundColor = interval.color.hexValue
-    swatch.style.width = 50 * this.#getNumberOfDataPoints(interval.data) + 'px'
+  #displayTableHeader() {
+    const histogramTable = this.#histogramTableTemplate.content.cloneNode(true)
+    const unit = histogramTable.querySelector('#interval-unit')
+    unit.textContent = 'minutes'
+    this.#container.appendChild(unit)
+    const label = histogramTable.querySelector('#interval-label')
+    label.textContent = 'training occasions'
+    this.#container.appendChild(label)
+  }
+
+  #displayTableRows(intervals) {
+    for (const interval of intervals) {
+      const intervalRow = this.#tableRowTemplate.content.cloneNode(true)
+      this.#displayBoundaries(intervalRow, interval)
+      this.#displayFrequency(intervalRow, interval)
+      this.#displayDataPoints(intervalRow, interval)
+      this.#container.appendChild(intervalRow)
+    }
   }
 
   #displayBoundaries (clone, interval) {
@@ -47,9 +55,15 @@ export class HistogramDisplay {
     boundaries.textContent = interval.lowerBoundary + ' - ' + interval.upperBoundary
   }
 
+  #displayFrequency(clone, interval) {
+    const swatch = clone.querySelector('.interval-swatch')
+    swatch.style.backgroundColor = interval.color.hexValue
+    swatch.style.width = 50 * this.#getNumberOfDataPoints(interval.data) + 'px'
+  }
+
   #displayDataPoints(clone, interval) {
     const dataPoints = clone.querySelector('.interval-datapoints')
-    dataPoints.textContent = 'Number of instances: ' + interval.data.length
+    dataPoints.textContent = '(' + interval.data.length + ')'
   }
 
   #getNumberOfDataPoints (dataPoints) {

@@ -7,12 +7,22 @@
   <title>Training statistics</title>
   <link rel="stylesheet" type="text/css" href="./css/style.css">
   <script type="module" src="./js/statistics.js"></script>
-  <template id="histogram">
-    <div id="interval-container">
-      <p class="interval-boundaries"></p>
-      <div class="interval-swatch"></div>
-      <p class="interval-datapoints"></p>
-    </div>
+  <template id="histogram-table">
+    <table>
+      <tr>
+        <th id="interval-unit" class="first-column">minutes</th>
+        <th id="interval-label">instances</th>
+      </tr>
+    </table>
+  </template>
+  <template id="interval-row">
+    <tr>
+      <td class="interval-boundaries first-column"></td>
+      <td class="frequency">
+        <div class="interval-swatch"></div>
+        <p class="interval-datapoints"></p>
+      </td>
+    </tr>
   </template>
 </head>
 

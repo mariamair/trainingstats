@@ -43,19 +43,34 @@ label {
   gap: 10px;
 }
 
-#interval-container {
+h3 {
+  margin: 30px 0;
+}
+
+th {
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+}
+
+.first-column {
+  border-right: 1px solid gray;
+}
+
+.frequency {
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
 .interval-swatch {
-  width: 50px;
   height: 50px;
   border: 1px solid black; 
-  margin: 20px 10px; 
 }
 
 .interval-boundaries, .interval-datapoints {
   padding: 20px 20px;
   font-size: 1.2em;
+}
+
+.interval-boundaries {
+  vertical-align: middle;
 }
