@@ -35,6 +35,7 @@ async function saveInformationAndReloadPage(event) {
   const result = await saveInformation(values)
   const p = document.createElement('p')
   p.textContent = result
+  p.classList.add('result')
   document.querySelector('#messageDisplay').appendChild(p)
   form.reset()
 }
