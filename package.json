@@ -25,7 +25,7 @@
     "docker:dev": "docker compose -p trainingstats-dev -f docker-compose.yml -f docker-compose.development.yml up -d --build",
     "docker:prod": "docker compose -p trainingstats -f docker-compose.production.yml up -d --build",
     "lint": "npx eslint .",
-    "test": "npx --node-options=--experimental-vm-modules jest --coverage"
+    "test": "npx --node-options=--experimental-vm-modules jest --json --outputFile=./test/reports/report.json --coverage"
   },
   "dependencies": {
     "express": "^5.1.0",

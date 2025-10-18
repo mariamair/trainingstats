@@ -5,7 +5,6 @@
  * @version 0.0.1
  */
 
-import { execSync } from 'node:child_process'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import fs from 'node:fs/promises'
@@ -14,10 +13,9 @@ import console from 'node:console'
 const directoryFullName = dirname(fileURLToPath(import.meta.url))
 const inputPath = join(directoryFullName, 'reports', 'report.json')
 const outputPathReport = join(directoryFullName, 'reports', 'unitTestReport.md')
-const outputPathSummary = join(directoryFullName, 'reports', 'summary.md')
 
 const report = await readTestReport()
-let markdownReport = '# Test results\n'
+let markdownReport = '# Unit test results\n'
 createSummary(report)
 createTestCaseReport(report)
 writeTestReportToMarkdown(outputPathReport, markdownReport)
@@ -39,7 +37,7 @@ function createSummary(report) {
   const time = new Date(report.startTime).toString()
   const tableColumns = '\n\n|   | Failed | Passed | Total |\n|---|--------|--------|-------|\n'
 
-  markdownReport += '\n**Latest run:** ' + time.substring(0, 21)
+  markdownReport += '\n**Latest run (UTC):** ' + time.substring(0, 21)
     markdownReport += '\n\n## Summary of test results\n'
   markdownReport += tableColumns
   markdownReport += '| Test suites | ' +
@@ -49,7 +47,6 @@ function createSummary(report) {
 }
 
 function createTestCaseReport(report) {
-  const time = new Date(report.startTime).toString()
   const tableColumns = '| Test | Status |\n|------|--------|\n'
 
   for (const suite of report.testResults) {
