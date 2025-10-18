@@ -1,75 +1,32 @@
-/* eslint-disable no-undef */
 /**
  * The script file of the frontend application.
  *
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
-import { ErrorHandler } from './ErrorHandler.js'
+import { TrainingFormSetup } from './TrainingFormSetup.js'
+import { ReadUserInput } from './ReadUserInput.js'
+import { SaveUserInput } from './SaveUserInput.js'
 
-const form = document.querySelector('#trainingInformation')
+const readUserInput = new ReadUserInput()
+const saveUserInput = new SaveUserInput()
+const trainingForm = document.querySelector('#trainingInformation')
+const trainingFormSetup = new TrainingFormSetup(trainingForm)
 
-setTodaysDate()
-setDefaultMinutes(60)
+trainingFormSetup.setDefaultValues()
 
-function setTodaysDate() {
-  let today = new Date(Date.now())
-  today = today.toISOString()
-  today = today.substring(0, 10)
-
-  form.querySelector('#date').setAttribute('value', today)
-  form.querySelector('#date').setAttribute('max', today)
-}
-
-function setDefaultMinutes(minutes) {
-  form.querySelector('#minutes').setAttribute('value', minutes)
-}
-
-form.addEventListener('submit', (event) => {
-  saveInformationAndReloadPage(event)
+trainingForm.addEventListener('submit', async (event) => {
+  event.preventDefault()
+  const values = readUserInput.readTrainingInformation(event.target)
+  const result = await saveUserInput.saveTrainingInformation(values)
+  displayMessage(result)
+  trainingForm.reset()
 })
 
-async function saveInformationAndReloadPage(event) {
-  event.preventDefault()
-  const values = readValues(event.target)
-  const result = await saveInformation(values)
+function displayMessage(result) {
   const p = document.createElement('p')
   p.textContent = result
   p.classList.add('result')
   document.querySelector('#messageDisplay').appendChild(p)
-  form.reset()
-}
-
-function readValues (form) {
-  const values = { 
-    username: form.querySelector('#username').value,
-    date: form.querySelector('#date').value,
-    trainingType: form.querySelector('#trainingType').value,
-    minutes: form.querySelector('#minutes').value
-  }
-  return values
-}
-
-async function saveInformation (values) {
-  console.log(values)
-  try {
-    const res = await window.fetch('/training', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-    })
-
-    const data = await res.json()
-  
-    if (!res.ok) {
-      throw new Error(data.message)
-    } 
-    return data
-  } catch (error) {
-    const errorHandler = new ErrorHandler()
-    errorHandler.displayErrorMessage(error.message)
-  }
 }
 
