@@ -4,7 +4,7 @@
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
-export class ReadUserInput {
+export class UserInputReader {
 
   readTrainingInformation (trainingForm) {
     const values = { 

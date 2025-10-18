@@ -4,9 +4,10 @@
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
-import { ErrorHandler } from './ErrorHandler.js'
+import { MessageDisplay } from './MessageDisplay.js'
 
-export class SaveUserInput {
+export class UserInputSaver {
+  #messageDisplay = new MessageDisplay()
 
   async saveTrainingInformation (values) {
     try {
@@ -18,15 +19,14 @@ export class SaveUserInput {
         body: JSON.stringify(values)
       })
 
-      const data = await res.json()
+      const response = await res.json()
     
       if (!res.ok) {
-        throw new Error(data.message)
+        throw new Error(response.message)
       } 
-      return data
+      this.#messageDisplay.displayInfoMessage(response)
     } catch (error) {
-      const errorHandler = new ErrorHandler()
-      errorHandler.displayErrorMessage(error.message)
+      this.#messageDisplay.displayErrorMessage(error.message)
     }
   }
 }
