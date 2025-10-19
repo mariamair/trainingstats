@@ -5,6 +5,7 @@
  */
 
 import express from 'express'
+import helmet from 'helmet'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { router } from './routes/router.js'
@@ -12,6 +13,17 @@ import { ErrorHandler } from './util/ErrorHandler.js'
 
 
 const app = express()
+
+app.use(helmet())
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      'connect-src': ["'self'"],
+      'script-src': ["'self'"]
+    }
+  })
+)
 
 const directoryFullName = dirname(fileURLToPath(import.meta.url))
 
@@ -21,11 +33,13 @@ app.use(express.urlencoded({ extended: false }))
 // Parse incoming requests of content type 'application/json'.
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.sendFile(join(directoryFullName, '..', 'index.html'))
-})
+app.use('/', express.static(join(directoryFullName, '..', 'public')))
 
-app.use('/public', express.static(join(directoryFullName, '..', 'public')))
+app.get('/', (req, res) => {
+  console.log('public')
+  console.log(req.url)
+  res.sendFile(join(directoryFullName, '..', 'public', 'index.html'))
+})
 
 app.use('/', router)
 
