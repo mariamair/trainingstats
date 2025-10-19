@@ -15,14 +15,11 @@ const app = express()
 
 const directoryFullName = dirname(fileURLToPath(import.meta.url))
 
-// Parse incoming requests of the content type application/x-www-form-urlencoded.
-// Populate the request object with a body object (req.body).
+// Parse incoming requests of content type 'application/x-www-form-urlencoded'.
 app.use(express.urlencoded({ extended: false }))
 
-// Parse incoming requests of content type: application/json (JSON payloads).
-// Populate the request object with a body object (req.body).
-// Extend payload size to 500kb.
-app.use(express.json({ limit: '500kb' }))
+// Parse incoming requests of content type 'application/json'.
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.sendFile(join(directoryFullName, '..', 'index.html'))

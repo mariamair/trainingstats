@@ -1,5 +1,5 @@
 /**
- * Class that handles training information
+ * Handles communication between the statistics view and model.
  * 
  * @author Maria Mair <mm225mz@student.lnu.se>
  */

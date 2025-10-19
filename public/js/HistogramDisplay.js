@@ -9,6 +9,11 @@ export class HistogramDisplay {
   #histogramTableTemplate = document.querySelector('#histogram-table')
   #tableRowTemplate = document.querySelector('#interval-row')
 
+  /**
+   * Create and display a histogram.
+   * 
+   * @param {object} intervals - An object containing interval data.
+   */
   displayHistogram (intervals) {
     this.#clearDisplay()
     this.#displayHeading('Frequency distribution of training time')

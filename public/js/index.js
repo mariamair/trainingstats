@@ -1,5 +1,5 @@
 /**
- * The script file of the frontend application.
+ * The script file of the frontend start page.
  *
  * @author Maria Mair <mm225mz@student.lnu.se>
  */

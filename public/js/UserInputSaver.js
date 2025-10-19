@@ -9,6 +9,11 @@ import { MessageDisplay } from './MessageDisplay.js'
 export class UserInputSaver {
   #messageDisplay = new MessageDisplay()
 
+  /**
+   * Save the training information.
+   * 
+   * @param {object} values - The information the user has specified.
+   */
   async saveTrainingInformation (values) {
     try {
       const res = await window.fetch('/training', {

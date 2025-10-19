@@ -1,5 +1,5 @@
 /**
- * Create statistic form training data.
+ * Filters and compiles training data.
  * 
  * @author Maria Mair <mm225mz@student.lnu.se>
  */

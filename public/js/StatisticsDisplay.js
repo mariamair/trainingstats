@@ -9,6 +9,12 @@ import { HistogramDisplay } from './HistogramDisplay.js'
 export class StatisticsDisplay {
   #container = document.querySelector('#trainingStatistics')
 
+  /**
+   * Display training data according to user selection.
+   * 
+   * @param {string} option - The option that the user has selected.
+   * @param {object} data - The training data to be displayed.
+   */
   displayStatistics(option, data) {
     if (option === 'occasions') {
       this.#displayNumberOfOccasions(data)

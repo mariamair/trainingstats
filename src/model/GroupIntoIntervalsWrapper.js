@@ -1,5 +1,5 @@
 /**
- * Wrap the group-into-intervals model.
+ * Wraps the group-into-intervals module.
  * 
  * @author Maria Mair <mm225mz@student.lnu.se>
  */

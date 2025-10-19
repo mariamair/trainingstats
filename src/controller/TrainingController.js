@@ -1,5 +1,5 @@
 /**
- * Class that handles training information
+ * Handles communication between the training input view and the training information models.
  * 
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
@@ -11,6 +11,13 @@ import { TrainingInstance } from '../model/TrainingInstance.js'
 export class TrainingController {
   #trainingCollection = new TrainingCollection()
 
+  /**
+   * Create a training instance and save it to the database.
+   * 
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   create(req, res, next) {
     try {
       this.#validateUserInput(req.body)

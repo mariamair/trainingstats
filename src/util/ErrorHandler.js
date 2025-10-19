@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable max-params */
 /**
  * This module handles errors in the backend.
  * 
@@ -8,6 +7,14 @@
 
 export class ErrorHandler {
 
+  /**
+   * 
+   * @param {object} error - Express error object.
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function. 
+   * 
+   */
   globalError(error, req, res, next) {
     const statusCode = error.status || 500
     const statusMessage = error.statusMessage || 'Unknown error'

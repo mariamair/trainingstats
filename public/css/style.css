@@ -9,6 +9,7 @@ h1 {
   font-size: 1.8rem;
 }
 
+/* ----- Navigation ----- */
 ul {
   display: flex;
   gap: 30px;
@@ -26,11 +27,15 @@ a:hover {
     text-decoration: underline;
 }
 
-label {
-  display: block;
-  margin-bottom: 10px;
+/* ----- Training form ----- */
+#trainingInformation {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  white-space: nowrap;
+  gap: 10px;
 }
 
+/* ----- Information and error messages ----- */
 .info {
   color: green;
   font-weight: bold;
@@ -42,11 +47,10 @@ label {
   font-weight: bold;
 }
 
-#trainingInformation {
-  display: grid;
-  grid-template-columns: min-content min-content;
-  white-space: nowrap;
-  gap: 10px;
+/* ----- Statistics form and display ----- */
+label {
+  display: block;
+  margin-bottom: 10px;
 }
 
 h3 {
