@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /**
  * The starting point of the application.
  * 

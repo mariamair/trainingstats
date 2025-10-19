@@ -13,6 +13,10 @@ export class ErrorHandler {
     const statusMessage = error.statusMessage || 'Unknown error'
     const message = error.message || 'Unknown error'
 
+    if (process.env.NODE_ENV === 'development') {
+      console.log(error)
+    }
+
     res
       .status(statusCode)
       .json({

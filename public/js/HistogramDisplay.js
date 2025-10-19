@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /**
  * Handles the display of the histogram.
  *
@@ -35,6 +34,7 @@ export class HistogramDisplay {
     const unit = histogramTable.querySelector('#interval-unit')
     unit.textContent = 'minutes'
     this.#container.appendChild(unit)
+
     const label = histogramTable.querySelector('#interval-label')
     label.textContent = 'training occasions'
     this.#container.appendChild(label)
@@ -45,7 +45,6 @@ export class HistogramDisplay {
       const intervalRow = this.#tableRowTemplate.content.cloneNode(true)
       this.#displayBoundaries(intervalRow, interval)
       this.#displayFrequency(intervalRow, interval)
-      this.#displayDataPoints(intervalRow, interval)
       this.#container.appendChild(intervalRow)
     }
   }
@@ -56,17 +55,12 @@ export class HistogramDisplay {
   }
 
   #displayFrequency(clone, interval) {
+    const numberOfDataPoints = interval.data.length
     const swatch = clone.querySelector('.interval-swatch')
     swatch.style.backgroundColor = interval.color.hexValue
-    swatch.style.width = 50 * this.#getNumberOfDataPoints(interval.data) + 'px'
-  }
+    swatch.style.width = 50 * numberOfDataPoints + 'px'
 
-  #displayDataPoints(clone, interval) {
     const dataPoints = clone.querySelector('.interval-datapoints')
-    dataPoints.textContent = '(' + interval.data.length + ')'
-  }
-
-  #getNumberOfDataPoints (dataPoints) {
-    return dataPoints.length
+    dataPoints.textContent = '(' + numberOfDataPoints + ')'
   }
 }

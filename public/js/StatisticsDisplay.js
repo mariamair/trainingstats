@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /**
  * Handles the display of statistics.
  *

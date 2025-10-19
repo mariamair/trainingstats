@@ -1,5 +1,5 @@
 /**
- * Defines the router.
+ * Defines the main router.
  * 
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
@@ -20,7 +20,7 @@ router.use('/*splat', (req, res, next) => {
   const error = new Error(http.STATUS_CODES[httpStatusCode])
   error.status = httpStatusCode
   error.statusMessage = http.STATUS_CODES[httpStatusCode]
-  error.message = 'Not found'
+  error.message = 'Information not found'
   next(error)
 })
 
