@@ -75,8 +75,8 @@ export class Statistics {
   }
 
   getNumberOfDays(username) {
-    const days = this.getUniqueDays(username)
-    return days.length
+    const uniqueDays = this.getUniqueDays(username)
+    return uniqueDays.length
   }
 
   getUniqueDays(username) {
@@ -89,8 +89,8 @@ export class Statistics {
   }
 
   getNumberOfTrainingTypes(username) {
-    const types = this.getUniqueTrainingTypes(username)
-    return types.length
+    const uniqueTypes = this.getUniqueTrainingTypes(username)
+    return uniqueTypes.length
   }
 
   getUniqueTrainingTypes(username) {
