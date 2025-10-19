@@ -19,7 +19,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      'connect-src': ["'self'"],
+      // eslint-disable-next-line quotes
       'script-src': ["'self'"]
     }
   })
