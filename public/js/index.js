@@ -15,12 +15,12 @@ trainingFormSetup.setDefaultValues()
 
 trainingForm.addEventListener('submit', async (event) => {
   event.preventDefault()
-try {
+  try {
     const userInput = new UserInput(event.target)
     const response = await userInput.save()
     messageDisplay.displayInfoMessage(response)
     trainingForm.reset()
-} catch (error) {
-  messageDisplay.displayErrorMessage(error.message)
-}
+  } catch (error) {
+    messageDisplay.displayErrorMessage(error.message)
+  }
 })
