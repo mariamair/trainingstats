@@ -9,3 +9,5 @@ When you add an issue, please include the following information:
   
 
 If possible, please add screenshots.
+
+➡️ [Link to issue form](https://github.com/mariamair/trainingstats/issues/new)
