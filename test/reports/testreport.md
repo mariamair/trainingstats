@@ -1,6 +1,6 @@
-# Testreport
+# Testreport for _trainingstats_
 
-| Requirement | Type of test | Testcase | Status |
+| Tested requirement | Type of test | Testcase | Status |
 | ----------- | ------------ | -------- | ------ |
 | R1: Application runs in browser | manual | [TC1: Run application in browser](#test-cases-for-manual-tests) | ✅ |
 | R2: Application is deployed with CI/CD pipeline | manual | [TC2: Check pipeline run](#test-cases-for-manual-tests)  | ✅ |
@@ -17,11 +17,11 @@
 
 | Test case | Steps | Input | Expected output |
 | --------- | ------| ----- | --------------- |
-| TC1: Run application in browser | Step 1: Open [http://trainingstats.mariamair.se/](http://trainingstats.mariamair.se/) in a browser <br> Step 2: Click on "Get started" | none | The page opens with https and the "Get started" screen is displayed. |
+| TC1: Run application in browser | Open [http://trainingstats.mariamair.se/](http://trainingstats.mariamair.se/) in a browser. | none | The page opens with _https_ and the "Add your training information" screen is displayed. |
 | TC2: Check pipeline run | Step 1: Go to [https://github.com/mariamair/trainingstats/actions](https://github.com/mariamair/trainingstats/actions) <br> Step 2: Check the latest run. | none | The latest run has passed. |
-| TC3: Add training information | Step 1: Open [https://trainingstats.mariamair.se/](https://trainingstats.mariamair.se/) in a browser <br> Step 2: Click on "Get started" <br> Step 3: Add the input and click on "Submit". | Name: **testuser** <br> Date: _use preselected value_ <br> Type of training: **Running** <br> Time (in minutes): _use preselected value_ | "Saved" is displayed beneath the form |
-| TC4: See training statistics | Step 1: Open [https://trainingstats.mariamair.se/](https://trainingstats.mariamair.se/) in a browser <br> Step 2: Click on "Get started" <br> Step 3: Click on "View statistics". | none | A drop down with different options is displayed. |
-| TC5: See histogram about training minutes | Step 1: Open [https://trainingstats.mariamair.se/](https://trainingstats.mariamair.se/) in a browser <br> Step 2: Click on "Get started" <br> Step 3: Click on "View statistics". <br> Step 4: Select "Time as histogram" and click on "Display". | none | A histogram showing the frequency distribution of training time is displayed. |
+| TC3: Add training information | Step 1: Open [https://trainingstats.mariamair.se/](https://trainingstats.mariamair.se/) in a browser <br> Step 2: Add the input and click on "Submit". | Name: **testuser** <br> Date: _use preselected value_ <br> Type of training: **Running** <br> Time (in minutes): _use preselected value_ | "Saved" is displayed beneath the form |
+| TC4: See training statistics | Step 1: Open [https://trainingstats.mariamair.se/](https://trainingstats.mariamair.se/) in a browser <br> Step 2: Click on "View statistics". | none | A drop down with different options is displayed. |
+| TC5: See histogram about training minutes | Step 1: Open [https://trainingstats.mariamair.se/](https://trainingstats.mariamair.se/) in a browser <br> Step 2: Click on "View statistics". <br> Step 3: Select "Time as histogram" and click on "Display". | none | A histogram showing the frequency distribution of training time is displayed. |
 
 
 ## Test cases for unit tests
