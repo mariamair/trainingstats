@@ -5,9 +5,28 @@
  * @author Maria Mair <mm225mz@student.lnu.se>
  */
 
+import http from 'node:http'
+
 export class ErrorHandler {
 
   /**
+   * Handle 'Not found' errors and pass them on to the global error handler.
+   * 
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function. 
+   */
+  notFoundError(req, res, next) {
+    const httpStatusCode = 404
+    const error = new Error(http.STATUS_CODES[httpStatusCode])
+    error.status = httpStatusCode
+    error.statusMessage = http.STATUS_CODES[httpStatusCode]
+    error.message = 'Information not found'
+    next(error)
+  }
+
+  /**
+   * Handle global errors.
    * 
    * @param {object} error - Express error object.
    * @param {object} req - Express request object.

@@ -42,6 +42,7 @@ app.get('/', (req, res) => {
 app.use('/', router)
 
 const errorHandler = new ErrorHandler()
+app.use(errorHandler.notFoundError)
 app.use(errorHandler.globalError)
 
 const server = app.listen(process.env.PORT, () => {
