@@ -6,6 +6,10 @@ _Trainingstats_ is a simple training statistics application that lets you add in
 - The time is set to 60 minutes by default, but you can change it if your session was shorter or longer.
 - Select different statistic views to summarize your training from different angles. 
 
+
+> **Scope**: This web application was developed as a 2-week school project for the course [1DV610](https://coursepress.lnu.se/kurs/introduktion-till-mjukvarukvalitet/).
+
+
 ## Add information about your training
 ![Add training information](.readme/img/screenshot-add-training-information.png)
 
