@@ -2,7 +2,6 @@
  * Module to create unit test reports as markdown and console output.
  *
  * @author Maria Mair <mm225mz@stundent.lnu.se>
- * @version 0.0.1
  */
 
 import { dirname, join } from 'node:path'
@@ -38,7 +37,7 @@ function createSummary(report) {
   const tableColumns = '\n\n|   | Failed | Passed | Total |\n|---|--------|--------|-------|\n'
 
   markdownReport += '\n**Latest run (UTC):** ' + time.substring(0, 21)
-    markdownReport += '\n\n## Summary of test results\n'
+  markdownReport += '\n\n## Summary of test results\n'
   markdownReport += tableColumns
   markdownReport += '| Test suites | ' +
     report.numFailedTestSuites + ' | ' + report.numPassedTestSuites + ' | ' + report.numTotalTestSuites + ' |\n'
