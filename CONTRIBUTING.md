@@ -5,7 +5,12 @@ Please be sure to read the contribution guidelines before making a change.
 _Trainingstats_ is a Node.js/Express application that runs in a container.
 - The backend is built with vanilla javascript.
 - The frontend is built with html, css and vanilla javascript.
-- An object-oriented approach is used.
+- An object-oriented approach is used.  
+
+## The application architecture
+![Architecture](.readme/img/architecture.png)  
+The application collects training data from the user and processes it before storing it.  
+The statistics page is based on calculations that make use of the stored data and the group-into-intervals module.
 
 ## Getting started
 1. Use `git clone` to clone the project.
@@ -42,15 +47,7 @@ Once you push your code, the linter and unit tests will also run in the CI/CD pi
 ## Code style and linting
 ESLint with recommended and stylistic settings is used to improve code quality and consistency.
 
-## Requesting a change (Adding an issue)
-When you add an issue, please include the following information:
-- The number of the version you are using.
-- A description of:
-  - what you were trying to do
-  - what happened
-  - what you think should happen 
-  
-
-If possible, please add screenshots.
+## Adding an issue
+Please read the information in [Request for change](.readme/requestForChange.md) before adding an issue.
 
 
