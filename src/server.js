@@ -36,8 +36,6 @@ app.use(express.json())
 app.use('/', express.static(join(directoryFullName, '..', 'public')))
 
 app.get('/', (req, res) => {
-  console.log('public')
-  console.log(req.url)
   res.sendFile(join(directoryFullName, '..', 'public', 'index.html'))
 })
 
