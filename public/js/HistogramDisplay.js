@@ -12,14 +12,14 @@ export class HistogramDisplay {
   /**
    * Create and display a histogram.
    * 
-   * @param {object} intervals - An object containing interval data.
+   * @param {object} intervalData - Training data as intervals.
    */
-  displayHistogram (intervals) {
+  displayHistogram (intervalData) {
     this.#clearDisplay()
     this.#displayHeading('Frequency distribution of training time')
 
     this.#displayTableHeader()
-    this.#displayTableRows(intervals)
+    this.#displayTableRows(intervalData)
   }
 
   #clearDisplay() {

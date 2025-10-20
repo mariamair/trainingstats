@@ -9,9 +9,9 @@ import http from 'node:http'
 
 export class GroupIntoIntervalsWrapper {
 
-  getAscendingIntervalsWithColors(minutes, colorSchemeId) {
+  getAscendingIntervalsWithColors(dataArray, colorSchemeId) {
     this.validateColorScheme(colorSchemeId)
-    return GroupIntoIntervals.getAscendingIntervalsWithColors(minutes, colorSchemeId)
+    return GroupIntoIntervals.getAscendingIntervalsWithColors(dataArray, colorSchemeId)
   }
 
   validateColorScheme(colorSchemeId) {
