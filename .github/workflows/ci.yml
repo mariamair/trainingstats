@@ -35,7 +35,16 @@ jobs:
       - uses: actions/setup-node@v4
       - run: npm install
       - run: npx eslint ./src
-  
+
+  lint-frontend:
+    name: Lint Frontend
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm install
+      - run: npx eslint ./public
 
   unit-test:
     name: Unit Tests
@@ -66,7 +75,7 @@ jobs:
   deploy:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    needs: [lint-backend, unit-test]
+    needs: [lint-backend, lint-frontend, unit-test]
     if: github.ref == 'refs/heads/main'
     env:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

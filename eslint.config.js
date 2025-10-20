@@ -5,7 +5,6 @@ import { defineConfig } from 'eslint/config'
 export default defineConfig([
   { 
     files: ['**/*.{js,mjs,cjs}'], 
-    ignores: ['./test/**'],
     plugins: { js },
     extends: ['js/recommended'],
     rules: {
@@ -28,6 +27,7 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...globals.jest,
         ...globals.node
       }
     }
