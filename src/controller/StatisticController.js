@@ -82,9 +82,9 @@ export class StatisticController {
     }
   }
 
-  getHistogram(req, res, next) {
+  getMinutesAsIntervals(req, res, next) {
     try {
-      const result = this.#statistics.getHistogram(this.#userName)
+      const result = this.#statistics.getMinutesAsIntervals(this.#userName)
       res.json(result)
     } catch (error) {
       next(error)

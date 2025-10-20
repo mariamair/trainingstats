@@ -28,7 +28,7 @@ export class StatisticsDisplay {
     if (option === 'totalTime') {
       this.#displayTotalTime(data)
     }
-    if (option === 'histogram') {
+    if (option === 'minutesHistogram') {
       const histogramDisplay = new HistogramDisplay()
       histogramDisplay.displayHistogram(data)
     }

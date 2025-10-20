@@ -16,4 +16,4 @@ router.get('/occasions', (req, res, next) => statisticController.getNumberOfOcca
 router.get('/numberOfDays', (req, res, next) => statisticController.getNumberOfDays(req, res, next))
 router.get('/trainingTypes', (req, res, next) => statisticController.getTrainingTypes(req, res, next))
 router.get('/totalTime', (req, res, next) => statisticController.getTotalTime(req, res, next))
-router.get('/histogram', (req, res, next) => statisticController.getHistogram(req, res, next))
+router.get('/minutesHistogram', (req, res, next) => statisticController.getMinutesAsIntervals(req, res, next))

@@ -41,7 +41,7 @@ export class Statistics {
     return totalTime
   }
 
-  getHistogram(username) {
+  getMinutesAsIntervals(username) {
     const minutesArray = this.getMinutesPerInstance(username)
     const intervals = this.#wrapper.getAscendingIntervalsWithColors(minutesArray, this.#colorSchemeId)
     return intervals
