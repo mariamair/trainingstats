@@ -5,12 +5,13 @@ Please be sure to read the contribution guidelines before making a change.
 _Trainingstats_ is a Node.js/Express application that runs in a container.
 - The backend is built with vanilla javascript.
 - The frontend is built with html, css and vanilla javascript.
+- A MongoDB database is used. (_Please note: The database is not implemented yet!_)
 - An object-oriented approach is used.  
 
 ## The application architecture
 ![Architecture](.readme/img/architecture.png)  
 The application collects training data from the user and processes it before storing it.  
-The statistics page is based on calculations that make use of the stored data and the group-into-intervals module.
+The statistics page is based on calculations that make use of the stored data and the _group-into-intervals_ module.
 
 ## Getting started
 1. Use `git clone` to clone the project.
